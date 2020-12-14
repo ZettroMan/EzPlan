@@ -1,42 +1,30 @@
 package ru.gb.zettro.ezplan.entities;
 
-import lombok.Data;
+import lombok.Builder;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "tasks")
-@Data
-public class Task {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+@Builder
+public class Task extends AbstractTree {
+    private static long idCounter;
     private Long id;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "description")
     private String description;
-
-    @Column(name = "done")
-    private boolean done;
-
-    @Column(name = "weight")
+    private Boolean done;
     private Integer weight;
-
-    @Column(name = "archived")
-    private boolean archived;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id")
+    private Boolean archived;
     private Category category;
-
-    @ManyToOne
-    @JoinColumn(name = "priority_id")
     private Priority priority;
 
-//    @OneToMany
-//    @Column(name = "parent_id")
-//    private Task parent;
+    public Task() {
+        id = idCounter++;
+        name = "";
+        description = "";
+        done = false;
+        weight = 10;
+        archived = false;
+    }
+
+    public void addSubtask(Task t) {
+        addChild(t);
+    }
+
 }

@@ -1,9 +1,45 @@
 package ru.gb.zettro.ezplan.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import ru.gb.zettro.ezplan.entities.Category;
 
-@Repository
-public interface CategoryRepository extends JpaRepository<Category, Integer> {
+import java.util.List;
+import java.util.Optional;
+
+public class CategoryRepository implements Repository<Category> {
+
+    private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public CategoryRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    @Override
+    public Optional<Category> findById(Integer id) {
+        return null;
+    }
+
+    @Override
+    public Category save(Category entity) {
+        return null;
+    }
+
+    @Override
+    public void update(Category entity) {
+
+    }
+
+    @Override
+    public void delete(Category entity) {
+
+    }
+
+    @Override
+    public List<Category> findAll() {
+        return null;
+    }
+
+
 }
