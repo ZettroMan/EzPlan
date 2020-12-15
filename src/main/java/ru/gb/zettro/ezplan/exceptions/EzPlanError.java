@@ -1,11 +1,13 @@
 package ru.gb.zettro.ezplan.exceptions;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.Date;
 
 @Data
-public class EzPlanError {
+@EqualsAndHashCode(callSuper = false)
+public class EzPlanError extends RuntimeException {
     private int status;
     private String message;
     private Date timestamp;

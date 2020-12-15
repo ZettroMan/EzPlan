@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface Repository<T> {
-    Optional<T> findById(Integer id);
+    Optional<T> findById(Long id);
 
     T save(T entity);
 

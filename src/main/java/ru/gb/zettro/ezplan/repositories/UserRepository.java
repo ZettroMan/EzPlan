@@ -18,9 +18,9 @@ public class UserRepository implements Repository<User> {
     }
 
     @Override
-    public Optional<User> findById(Integer id) {
+    public Optional<User> findById(Long id) {
         return jdbcTemplate.query(
-                "select id, username where id = ?",
+                "select id, username from users where id = ?",
                 (r, i) -> User.builder()
                         .id(r.getLong(1))
                         .username(r.getString(2))
@@ -50,7 +50,7 @@ public class UserRepository implements Repository<User> {
 
     public Optional<User> findByUsername(String username) {
         return jdbcTemplate.query(
-                "select id, username where username = ?",
+                "select id, username from users where username = ?",
                 (r, i) -> User.builder()
                         .id(r.getLong(1))
                         .username(r.getString(2))

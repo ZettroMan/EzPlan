@@ -17,8 +17,8 @@ public class CategoryRepository implements Repository<Category> {
     }
 
     @Override
-    public Optional<Category> findById(Integer id) {
-        return null;
+    public Optional<Category> findById(Long id) {
+        return Optional.of(null);
     }
 
     @Override

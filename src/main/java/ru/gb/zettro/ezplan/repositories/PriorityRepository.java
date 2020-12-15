@@ -17,8 +17,8 @@ public class PriorityRepository implements Repository<Priority> {
     }
 
     @Override
-    public Optional<Priority> findById(Integer id) {
-        return null;
+    public Optional<Priority> findById(Long id) {
+        return Optional.of(null);
     }
 
     @Override
