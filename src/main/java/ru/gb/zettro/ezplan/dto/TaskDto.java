@@ -1,4 +1,4 @@
-package ru.gb.zettro.ezplan.dtos;
+package ru.gb.zettro.ezplan.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

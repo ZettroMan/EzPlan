@@ -20,12 +20,27 @@ public class UserRepository implements Repository<User> {
     @Override
     public Optional<User> findById(Long id) {
         return jdbcTemplate.query(
-                "select id, username from users where id = ?",
+                "select id, username, password, email from users where id = ?",
                 (r, i) -> User.builder()
                         .id(r.getLong(1))
                         .username(r.getString(2))
+                        .password(r.getString(3))
+                        .email(r.getString(4))
                         .build(),
                 id).stream().findAny();
+    }
+
+    public Optional<User> findByUsername(String username) {
+        return jdbcTemplate.query(
+                "select id, username, password, email from users where username = ?",
+                (r, i) -> User.builder()
+                        .id(r.getLong(1))
+                        .username(r.getString(2))
+                        .password(r.getString(3))
+                        .email(r.getString(4))
+                        .build(),
+                username).stream().findAny();
+
     }
 
     @Override
@@ -48,13 +63,5 @@ public class UserRepository implements Repository<User> {
         return null;
     }
 
-    public Optional<User> findByUsername(String username) {
-        return jdbcTemplate.query(
-                "select id, username from users where username = ?",
-                (r, i) -> User.builder()
-                        .id(r.getLong(1))
-                        .username(r.getString(2))
-                        .build(),
-                username).stream().findAny();
-    }
+
 }

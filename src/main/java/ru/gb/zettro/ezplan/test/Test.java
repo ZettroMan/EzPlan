@@ -1,6 +1,6 @@
 package ru.gb.zettro.ezplan.test;
 
-import ru.gb.zettro.ezplan.dtos.TaskDto;
+import ru.gb.zettro.ezplan.dto.TaskDto;
 import ru.gb.zettro.ezplan.entities.Category;
 import ru.gb.zettro.ezplan.entities.Priority;
 import ru.gb.zettro.ezplan.entities.User;
