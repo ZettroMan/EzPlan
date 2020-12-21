@@ -1,0 +1,15 @@
+<div class="mb-3 text-center">
+    <form class="form-signin" ng-submit="tryToAuth()" style="max-width: 350px; padding: 15px; margin: 0 auto;">
+        <h1 class="h3 mb-3 font-weight-normal">Пожалуйста войдите</h1>
+        <label class="sr-only" for="inputUsername">Имя пользователя</label>
+        <input class="form-control" id="inputUsername" ng-model="user.username" placeholder="Имя пользователя" required="" style="margin-bottom: 10px;" type="text">
+        <label class="sr-only" for="inputPassword">Пароль</label>
+        <input class="form-control" id="inputPassword" ng-model="user.password" placeholder="Пароль" required="" style="margin-bottom: 10px;" type="password">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+        <p class="mt-5 mb-3 text-muted">© GeekBrains 2020</p>
+    </form>
+
+    <div ng-if="isUserLoggedIn()">
+        <button class="btn btn-outline-secondary" ng-click="tryToLogout()">Выйти</button>
+    </div>
+</div>
