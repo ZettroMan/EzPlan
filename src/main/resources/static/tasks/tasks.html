@@ -1,0 +1,26 @@
+<div>
+    <h3>Список задач</h3>
+    <table cellpadding="0" cellspacing="0" class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Имя задачи</th>
+            <th>Описание</th>
+            <th>Категория</th>
+            <th>Состояние</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="t in tasks">
+            <td>{{t.id}}</td>
+            <td>{{t.name}}</td>
+            <td>{{t.description}}</td>
+            <td>{{t.categoryName}}</td>
+            <td>{{t.completed ? 'Завершена' : 'Не завершена'}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <button class="btn btn-success" ng-click="getTasks)">Обновить</button>
+
+</div>

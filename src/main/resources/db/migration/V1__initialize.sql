@@ -21,7 +21,7 @@ create table users_roles
 
 create table categories
 (
-    id      serial primary key,
+    id      bigserial primary key,
     name    varchar(255),
     color   char(7),
     user_id bigint references users (id)
@@ -29,7 +29,7 @@ create table categories
 
 create table priorities
 (
-    id      serial primary key,
+    id      bigserial primary key,
     name    varchar(255),
     value   int,
     color   char(7),
@@ -41,14 +41,20 @@ create table tasks
     id          bigserial primary key,
     name        varchar(255),
     description varchar(65535),
-    done        bit,
+    completed   boolean,
     weight      integer,
-    archived    bit,
+    archived    boolean,
     category_id int references categories (id),
-    priority_id int references priorities (id)
--- ,    parent_id   bigint references tasks (id)
+    priority_id int references priorities (id),
+    user_id     bigint references users (id)
 );
 
+create table tasks_descendants
+(
+    parent_id bigint references tasks (id),
+    child_id  bigint references tasks (id),
+    primary key (parent_id, child_id)
+);
 
 insert into roles (name)
 values ('ROLE_USER'),
@@ -73,11 +79,16 @@ values ('Уже горит!!!', 100, '#ff0000', 1),
        ('Пока терпит +/-', 25, '#34a622', 1),
        ('Вообще не к спеху :-)', 0, '#1122dd', 1);
 
-insert into tasks (category_id, name, description, done, weight, archived, priority_id)
-values (1, 'Доделать проект', 'Закончить разработку квантового передатчика мыслей', false, 10, false, 2),
-       (2, 'Сходить семьей в кино', '', false, 10, false, 5),
-       (3, 'Сделать итоговый проект по спрингу', '', false, 10, false, 3),
-       (3, 'Изучить Angular', 'Посмотреть гигабайты видосов из инета, пройти все доступные курсы', false, 10, false, 3),
-       (3, 'Доделать бэкенд на спринге', 'Там уже ', false, 10, false, 3),
-       (3, 'Сделать фронт на ангуляре', '', false, 10, false, 3),
-       (4, 'Сыграть в мозгобойню', 'В следующие выходные - самое то!', false, 10, false, 2);
+insert into tasks (category_id, name, description, completed, weight, archived, priority_id, user_id)
+values (1, 'Доделать проект', 'Закончить разработку квантового передатчика мыслей', false, 10, false, 2, 1),
+       (2, 'Сходить семьей в кино', '', false, 10, false, 5, 1),
+       (3, 'Сделать итоговый проект по спрингу', '', false, 10, false, 3, 1),
+       (3, 'Изучить Angular', 'Посмотреть гигабайты видосов из инета, пройти все доступные курсы', false, 10, false, 3, 1),
+       (3, 'Доделать бэкенд на спринге', 'Там уже ', false, 10, false, 3, 1),
+       (3, 'Сделать фронт на ангуляре', '', false, 10, false, 3, 1),
+       (4, 'Сыграть в мозгобойню', 'В следующие выходные - самое то!', false, 10, false, 2, 1);
+
+insert into tasks_descendants (parent_id, child_id)
+values (3, 4),
+       (3, 5),
+       (3, 6);

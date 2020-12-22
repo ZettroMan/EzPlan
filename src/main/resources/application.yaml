@@ -5,7 +5,7 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=EzPlan
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=ezplan
     username: postgres
     password: admin
   jpa:
@@ -19,4 +19,4 @@ spring:
       settings:
         web-allow-others: false
 jwt:
-  secret: tg5g98h45g98h45g9845hg98hf9834hf9834hjheriheriuher9g8h384y5934yhhtertg
+  secret: ddn5d7dkjcsghsjpqww87g98hf9834345345345r9sf827fs7bf8ds9g67ds

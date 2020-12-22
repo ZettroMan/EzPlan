@@ -3,6 +3,7 @@ package ru.gb.zettro.ezplan.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "tasks")
@@ -19,8 +20,8 @@ public class Task {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "done")
-    private boolean done;
+    @Column(name = "completed")
+    private boolean completed;
 
     @Column(name = "weight")
     private Integer weight;
@@ -36,7 +37,13 @@ public class Task {
     @JoinColumn(name = "priority_id")
     private Priority priority;
 
-//    @OneToMany
-//    @Column(name = "parent_id")
-//    private Task parent;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany
+    @JoinTable(name = "tasks_descendants",
+            joinColumns = @JoinColumn(name = "parent_id"),
+            inverseJoinColumns = @JoinColumn(name = "child_id"))
+    private Collection<Task> subtasks;
 }
