@@ -15,13 +15,13 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CategoryService {
 
-    private static final Function<Category, CategoryDto> CategoryToDto = category -> {
-        return new CategoryDto().builder()
-                .id(category.getId())
-                .name(category.getName())
-                .color(category.getColor())
-                .build();
-    };
+    private static final Function<Category, CategoryDto> CategoryToDto = category ->
+            CategoryDto.builder()
+                    .id(category.getId())
+                    .name(category.getName())
+                    .color(category.getColor())
+                    .build();
+
 
     private final CategoryRepository categoryRepository;
 

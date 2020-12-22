@@ -23,6 +23,6 @@ public class PriorityController {
     @GetMapping(produces = "application/json")
     public List<PriorityDto> getAllPriorities(Principal principal) {
         User currentUser = userService.findByUsername(principal.getName()).orElseThrow(() -> new ResourceNotFoundException("Unable to find current user"));
-        return priorityService.findAll();
+        return priorityService.findAll(currentUser);
     }
 }

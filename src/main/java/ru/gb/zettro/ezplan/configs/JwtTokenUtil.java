@@ -30,7 +30,7 @@ public class JwtTokenUtil {
     }
 
     public List<String> getRoles(String token) {
-        return getClaimFromToken(token, (Function<Claims, List<String>>) claims -> claims.get("roles", List.class));
+        return getClaimFromToken(token, claims -> claims.get("roles", List.class));
     }
 
     public String generateToken(UserDetails userDetails) {
@@ -44,7 +44,7 @@ public class JwtTokenUtil {
 
     private String doGenerateToken(Map<String, Object> claims, String subject) {
         Date issuedDate = new Date();
-        Date expiredDate = new Date(issuedDate.getTime() + 60 * 60 * 1000); // _todo_
+        Date expiredDate = new Date(issuedDate.getTime() + 60 * 60 * 1000);
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject)
